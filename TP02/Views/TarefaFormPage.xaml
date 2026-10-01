@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="tp02.Views.TarefaFormPage">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="10">
+
+            <Label x:Name="TituloPagina"
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   Margin="0,0,0,10" />
+
+            <Label Text="Título" FontAttributes="Bold" />
+            <Entry x:Name="EntryTitulo"
+                   Placeholder="Ex.: Entregar TP02"
+                   MaxLength="60" />
+
+            <Label Text="Descrição" FontAttributes="Bold" />
+            <Editor x:Name="EditorDescricao"
+                    Placeholder="Descreva a tarefa"
+                    HeightRequest="120" />
+
+            <Label Text="Data de criação" FontAttributes="Bold" />
+            <DatePicker x:Name="PickerData" Format="dd/MM/yyyy" />
+
+            <Label Text="Prioridade" FontAttributes="Bold" />
+            <Picker x:Name="PickerPrioridade" Title="Selecione a prioridade">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Baixa</x:String>
+                        <x:String>Média</x:String>
+                        <x:String>Alta</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="12" Margin="0,16,0,0">
+                <Button Text="Cancelar"
+                        BackgroundColor="Gray"
+                        TextColor="White"
+                        Clicked="OnCancelarClicked" />
+                <Button Grid.Column="1"
+                        Text="Salvar"
+                        Clicked="OnSalvarClicked" />
+            </Grid>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

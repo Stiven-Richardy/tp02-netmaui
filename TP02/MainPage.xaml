@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:tp02.Models"
+             x:Class="tp02.MainPage"
+             Title="Minhas Tarefas">
+
+    <Grid RowDefinitions="*,Auto" Padding="16" RowSpacing="12">
+
+        <CollectionView x:Name="ListaTarefas"
+                        SelectionMode="Single"
+                        SelectionChanged="OnTarefaSelecionada">
+
+            <CollectionView.EmptyView>
+                <Label Text="Nenhuma tarefa cadastrada."
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       TextColor="Gray" />
+            </CollectionView.EmptyView>
+
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical" ItemSpacing="10" />
+            </CollectionView.ItemsLayout>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:Tarefa">
+                    <Border Padding="14" Stroke="LightGray" StrokeShape="RoundRectangle 10">
+                        <Grid ColumnDefinitions="6,*" ColumnSpacing="12">
+                            <BoxView Color="{Binding CorPrioridade}" CornerRadius="3" />
+                            <VerticalStackLayout Grid.Column="1" Spacing="4">
+                                <Label Text="{Binding Titulo}"
+                                       FontSize="18"
+                                       FontAttributes="Bold" />
+                                <Label Text="{Binding Descricao}"
+                                       FontSize="14"
+                                       TextColor="Gray"
+                                       MaxLines="2"
+                                       LineBreakMode="TailTruncation" />
+                            </VerticalStackLayout>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Button Grid.Row="1"
+                Text="Adicionar"
+                FontAttributes="Bold"
+                Clicked="OnAdicionarClicked" />
+    </Grid>
+</ContentPage>
